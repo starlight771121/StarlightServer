@@ -9,7 +9,7 @@ require('dotenv').config();
 
 const app = express();
 app.use(cors());
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
 
 const jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), 'utf-8'));
 
@@ -106,7 +106,7 @@ app.get('/api/products/:id', (req, res) => {
 });
 
 // Start the server
-app.listen(PORT, () => {
-  console.log(`Server is running on http://localhost:${PORT}`);
-});
-//module.exports.handler = serverless(app);
+// app.listen(PORT, () => {
+//   console.log(`Server is running on http://localhost:${PORT}`);
+// });
+module.exports.handler = serverless(app);
