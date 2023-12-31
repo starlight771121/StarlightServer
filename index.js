@@ -3,6 +3,8 @@ const cors = require('cors');
 const serverless = require('serverless-http');
 const fs = require('fs');
 const path = require('path');
+require('dotenv').config();
+
 // import { GetObjectCommand, S3Client } from "@aws-sdk/client-s3";
 
 const app = express();
@@ -15,10 +17,12 @@ const jsonData = JSON.parse(fs.readFileSync(path.join(__dirname, 'data.json'), '
 const AWS = require('aws-sdk');
 
 AWS.config.update({
-  accessKeyId: 'AKIAVKQPZBAGMLXVN5WH',
-  secretAccessKey: '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',
-  region: 'ap-southeast-2',
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  region: process.env.AWS_REGION
 });
+
+console.log(process.env.AWS_ACCESS_KEY_ID)
 
 const s3 = new AWS.S3();
 const bucketName = 'starlightimages';
